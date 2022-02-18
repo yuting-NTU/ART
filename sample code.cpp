@@ -21,21 +21,21 @@ Mat rotate(Mat src, double angle) {
 
 Mat genSinogram(Mat oriImg) {
 	Mat rotatedImg;
-	Mat colAddImg(180, oriImg.cols, CV_32FC1); //0~179«×
+	Mat colAddImg(180, oriImg.cols, CV_32FC1); //0~179åº¦
 
 	for (int angle = 0; angle < 180; angle++) {
-		//±ÛÂà¹Ï¤ù(0 ~ 179«×)
+		//æ—‹è½‰åœ–ç‰‡(0 ~ 179åº¦)
 		rotatedImg = rotate(oriImg, angle);
 
 		float originalColSum;
-		//¹M¾ú¨C­Ócol
+		//éæ­·æ¯å€‹col
 		for (int col = 0; col < rotatedImg.cols; col++) {
-			//­pºâ¨C­ÓcolSum
+			//è¨ˆç®—æ¯å€‹colSum
 			originalColSum = 0;
 			for (int row = 0; row < rotatedImg.rows; row++) {
 				originalColSum += rotatedImg.at<uchar>(row, col);
 			}
-			//ºâ§¹«á­n»Prow¥­§¡(¨¾¤î·¸¦ì)
+			//ç®—å®Œå¾Œè¦èˆ‡rowå¹³å‡(é˜²æ­¢æº¢ä½)
 			colAddImg.at<float>(angle, col) = originalColSum / oriImg.rows;
 		}
 	}
@@ -59,7 +59,7 @@ void saveImg(Mat results, char filename[], int iter) {
 }
 
 int main() {
-	string image_path = samples::findFile("image2.png");
+	string image_path = samples::findFile("oriImg.png");
 	Mat oriImg = imread(image_path, IMREAD_GRAYSCALE);
 	
 	if (oriImg.empty()) {
@@ -75,7 +75,7 @@ int main() {
 	imshow("colAddImg", colAddImg);
 	imwrite("colAddImg.png", colAddImg);
 	//waitKey(0);
-	//ª`·N³o¸Ì­n¨Ï¥ÎCV_32FC1¤~¯à¥Îat<float>
+	//æ³¨æ„é€™è£¡è¦ä½¿ç”¨CV_32FC1æ‰èƒ½ç”¨at<float>
 	cv::normalize(colAddImg, colAddImg, 0, 1, NORM_MINMAX, CV_32FC1);
 	
 
@@ -100,7 +100,7 @@ int main() {
 					}
 					else {
 						//MART
-						if (newColSum == 0) newColSum = 1; //¨¾¤î°£¥H0
+						if (newColSum == 0) newColSum = 1; //é˜²æ­¢é™¤ä»¥0
 						results.at<float>(row, col) *= (colSum / newColSum);
 					}
 				}
@@ -109,7 +109,7 @@ int main() {
 		}
 		results = rotate(results, 180);
 
-		//save image »İ­n¥ı¦Û¤v«Ø¥ßMART¸ê®Æ§¨
+		//save image éœ€è¦å…ˆè‡ªå·±å»ºç«‹MARTè³‡æ–™å¤¾
 		char fileName[30];
 		sprintf_s(fileName, "MART/MART_%d_%d.png", (int)(180 / anglePerPhoto), iter);
 		saveImg(results, fileName, iter);
