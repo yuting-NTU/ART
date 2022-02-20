@@ -34,8 +34,11 @@ cv::normalize(newArray, newArray, 0, 1, NORM_MINMAX, CV_32FC1);
 復原也只能復原沒被切掉的部分    
 ![image](https://github.com/YuTing-Fang1999/ART/blob/main/resource/result2.png)
 
-### 公式
-#### addtive
-![image](https://user-images.githubusercontent.com/66452317/153180249-1c422d2a-2f52-443b-a226-9ff1c2e620c6.png)
-#### Multiplicative  
-see the ppt  
+### 加法與乘法的比較
+![image](https://user-images.githubusercontent.com/66452317/154830277-aaf11818-4a72-4573-80af-e65caab7c050.png)
+
+### 我的改良(non-negative additive)
+![image](https://user-images.githubusercontent.com/66452317/154830261-20bbceff-9718-44a3-9891-7db8418a89b1.png)
+non-negative additive結合了加法與乘法的優點  
+詳細內容請看ppt  
+
