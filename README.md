@@ -36,7 +36,7 @@ cv::normalize(newArray, newArray, 0, 1, NORM_MINMAX, CV_32FC1);
 
 ### 加法與乘法的比較
 ![image](https://user-images.githubusercontent.com/66452317/154830277-aaf11818-4a72-4573-80af-e65caab7c050.png)
-以上圖來看是乘法的效果比加法好，以下如來看是加法的效果比乘法好，因此我對原來的算法做了一點改良  
+以上圖來看是乘法的效果比加法好，以下圖來看是加法的效果比乘法好，因此我對原來的算法做了一點改良  
 ### 我的改良(non-negative additive)
 ![image](https://user-images.githubusercontent.com/66452317/154830261-20bbceff-9718-44a3-9891-7db8418a89b1.png)
 non-negative additive結合了加法與乘法的優點  
